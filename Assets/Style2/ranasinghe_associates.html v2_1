@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ranasinghe & Associates | Assurance, Accounting & Tax Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Noto+Sans+Sinhala:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════
+   DARK THEME (default)
+══════════════════════════════════════ */
+:root,[data-theme="dark"]{
+  --bg:#0D1B2E; --bg-mid:#152238; --bg-light:#1E3150; --bg-card:#152238;
+  --bg-input:rgba(13,27,46,0.88); --bg-footer:#080F1A;
+  --nav-bg:rgba(13,27,46,0.97);
+  --gold:#C9984A; --gold-lt:#E2B96F; --gold-pale:#F5E6C8;
+  --gold-muted:rgba(201,152,74,0.55); --gold-faint:rgba(201,152,74,0.07);
+  --text-h:#E2B96F; --text-b:#F5E6C8; --text-sub:rgba(245,230,200,0.55);
+  --text-m:rgba(201,152,74,0.6);
+  --border:rgba(201,152,74,0.15); --border-hov:rgba(201,152,74,0.45);
+  --shadow:rgba(0,0,0,0.4); --shadow-btn:rgba(201,152,74,0.25);
+  --circ:rgba(201,152,74,0.07); --hline:rgba(201,152,74,0.11);
+  --glow:rgba(201,152,74,0.07); --noise:0.4;
+  --stat-c:#C9984A; --svc-n:rgba(201,152,74,0.05);
+}
+/* ══════════════════════════════════════
+   LIGHT THEME
+══════════════════════════════════════ */
+[data-theme="light"]{
+  --bg:#F3EDE0; --bg-mid:#EAE2D2; --bg-light:#DDD4C0; --bg-card:#FFFFFF;
+  --bg-input:rgba(255,255,255,0.92); --bg-footer:#E3D9C8;
+  --nav-bg:rgba(243,237,224,0.97);
+  --gold:#9B6A0A; --gold-lt:#B87D12; --gold-pale:#4A3008;
+  --gold-muted:rgba(155,106,10,0.6); --gold-faint:rgba(155,106,10,0.07);
+  --text-h:#7A4F08; --text-b:#1A2B42; --text-sub:rgba(26,43,66,0.58);
+  --text-m:rgba(155,106,10,0.65);
+  --border:rgba(155,106,10,0.18); --border-hov:rgba(155,106,10,0.5);
+  --shadow:rgba(26,43,66,0.1); --shadow-btn:rgba(155,106,10,0.18);
+  --circ:rgba(155,106,10,0.06); --hline:rgba(155,106,10,0.09);
+  --glow:rgba(155,106,10,0.05); --noise:0.12;
+  --stat-c:#9B6A0A; --svc-n:rgba(155,106,10,0.05);
+}
+/* ══════════════════════════════════════
+   LANG FONTS
+══════════════════════════════════════ */
+[data-lang="si"] .lt{font-family:'Noto Sans Sinhala',sans-serif;}
+[data-lang="ta"] .lt{font-family:'Noto Sans Tamil',sans-serif;}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);color:var(--text-b);
+  font-family:'Montserrat',sans-serif;overflow-x:hidden;
+  transition:background .4s,color .4s;
+}
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;opacity:var(--noise);transition:opacity .4s;
+}
+
+/* ══ NAV ══ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:18px 52px;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  transition:all .4s;
+}
+nav.scrolled{
+  background:var(--nav-bg);backdrop-filter:blur(22px);
+  border-bottom:1px solid var(--border);padding:12px 52px;
+  box-shadow:0 4px 40px var(--shadow);
+}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0;}
+.nav-logo-mark{
+  width:40px;height:40px;border:2px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--gold);
+  transition:all .4s;
+}
+.nav-logo-text{
+  font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;
+  color:var(--gold);letter-spacing:2.5px;text-transform:uppercase;line-height:1.2;
+  transition:color .4s;
+}
+.nav-logo-text span{
+  display:block;font-size:9px;font-family:'Montserrat',sans-serif;
+  font-weight:400;letter-spacing:3px;color:var(--text-m);transition:color .4s;
+}
+.nav-links{display:flex;gap:30px;list-style:none;}
+.nav-links a{
+  font-size:10.5px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--text-b);text-decoration:none;opacity:.75;transition:opacity .3s,color .3s;
+  position:relative;
+}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s;}
+.nav-links a:hover{opacity:1;color:var(--gold);}
+.nav-links a:hover::after{width:100%;}
+
+/* ── Nav Right Controls ── */
+.nav-right{display:flex;align-items:center;gap:8px;}
+
+.nav-cta{
+  padding:9px 22px;border:1px solid var(--gold);color:var(--gold);
+  font-size:9.5px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  text-decoration:none;transition:all .3s;white-space:nowrap;
+}
+.nav-cta:hover{background:var(--gold);color:var(--bg);}
+
+/* Theme Toggle */
+.theme-btn{
+  width:38px;height:38px;border:1px solid var(--border);background:var(--gold-faint);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:all .3s;color:var(--gold);flex-shrink:0;position:relative;
+}
+.theme-btn:hover{border-color:var(--gold);background:rgba(201,152,74,0.12);}
+.theme-btn .i-sun,.theme-btn .i-moon{position:absolute;transition:opacity .3s,transform .4s;}
+[data-theme="dark"] .i-sun{opacity:1;transform:rotate(0) scale(1);}
+[data-theme="dark"] .i-moon{opacity:0;transform:rotate(80deg) scale(.5);}
+[data-theme="light"] .i-sun{opacity:0;transform:rotate(-80deg) scale(.5);}
+[data-theme="light"] .i-moon{opacity:1;transform:rotate(0) scale(1);}
+
+/* Lang Switcher */
+.lang-sw{position:relative;}
+.lang-trigger{
+  display:flex;align-items:center;gap:7px;padding:8px 12px;
+  border:1px solid var(--border);background:var(--gold-faint);cursor:pointer;
+  color:var(--gold);font-size:10px;font-weight:600;letter-spacing:1.5px;
+  text-transform:uppercase;transition:all .3s;white-space:nowrap;
+}
+.lang-trigger:hover{border-color:var(--gold);background:rgba(201,152,74,0.12);}
+.lang-trigger .chev{transition:transform .3s;}
+.lang-trigger.open .chev{transform:rotate(180deg);}
+
+.lang-dd{
+  position:absolute;top:calc(100% + 8px);right:0;
+  background:var(--nav-bg);backdrop-filter:blur(20px);
+  border:1px solid var(--border);box-shadow:0 14px 44px var(--shadow);
+  min-width:175px;z-index:500;
+  opacity:0;pointer-events:none;transform:translateY(-6px);
+  transition:all .25s;
+}
+.lang-dd.open{opacity:1;pointer-events:all;transform:translateY(0);}
+.lang-opt{
+  display:flex;align-items:center;gap:11px;padding:12px 16px;
+  cursor:pointer;transition:background .2s;
+  border-bottom:1px solid var(--border);
+}
+.lang-opt:last-child{border-bottom:none;}
+.lang-opt:hover{background:var(--gold-faint);}
+.lang-opt.active{background:rgba(201,152,74,0.1);}
+.lang-opt-names{display:flex;flex-direction:column;gap:2px;flex:1;}
+.lang-opt-code{font-size:9.5px;font-weight:700;letter-spacing:2px;color:var(--gold);text-transform:uppercase;}
+.lang-opt-nat{font-size:12px;color:var(--text-sub);}
+.lang-chk{color:var(--gold);opacity:0;flex-shrink:0;}
+.lang-opt.active .lang-chk{opacity:1;}
+
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--gold);transition:all .3s;}
+
+/* ══ HERO ══ */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;position:relative;padding:100px 40px 60px;overflow:hidden;
+}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;}
+.hero-bg-c{
+  position:absolute;border-radius:50%;border:1px solid var(--circ);
+  transition:border-color .4s;
+}
+.hero-bg-c:nth-child(1){width:600px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%);}
+.hero-bg-c:nth-child(2){width:900px;height:900px;top:50%;left:50%;transform:translate(-50%,-50%);}
+.hero-bg-c:nth-child(3){width:1200px;height:1200px;top:50%;left:50%;transform:translate(-50%,-50%);}
+.hero-bg-l{
+  position:absolute;height:1px;width:100%;
+  background:linear-gradient(90deg,transparent,var(--hline),transparent);
+}
+.hero-bg-l:nth-child(4){top:30%;}
+.hero-bg-l:nth-child(5){top:70%;}
+.hero-glow{
+  position:absolute;width:500px;height:500px;
+  background:radial-gradient(ellipse,var(--glow) 0%,transparent 70%);
+  top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;
+}
+.hero-content{position:relative;z-index:1;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:8px 20px;border:1px solid var(--border);
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);
+  margin-bottom:48px;opacity:0;animation:fadeUp .8s ease .2s forwards;
+  transition:border-color .4s,color .4s;
+}
+.hero-badge::before,.hero-badge::after{content:'';width:18px;height:1px;background:var(--gold);opacity:.5;}
+.hero-mono{margin-bottom:26px;opacity:0;animation:fadeUp .8s ease .4s forwards;}
+.hero-mono svg{width:108px;height:auto;}
+.hero-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(46px,8vw,90px);font-weight:600;color:var(--text-h);
+  letter-spacing:8px;text-transform:uppercase;line-height:1;margin-bottom:5px;
+  opacity:0;animation:fadeUp .8s ease .6s forwards;transition:color .4s;
+}
+.hero-sub{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(14px,2.4vw,20px);
+  font-weight:300;letter-spacing:10px;text-transform:uppercase;
+  color:var(--text-m);margin-bottom:34px;
+  opacity:0;animation:fadeUp .8s ease .7s forwards;transition:color .4s;
+}
+.hero-div{
+  display:flex;align-items:center;gap:18px;justify-content:center;
+  margin-bottom:34px;opacity:0;animation:fadeUp .8s ease .8s forwards;
+}
+.hero-div-l{width:60px;height:1px;background:var(--gold);opacity:.4;transition:background .4s;}
+.hero-div-d{width:8px;height:8px;background:var(--gold);transform:rotate(45deg);transition:background .4s;}
+.hero-tag{
+  font-size:11.5px;font-weight:300;letter-spacing:4px;text-transform:uppercase;
+  color:var(--text-b);margin-bottom:50px;
+  opacity:0;animation:fadeUp .8s ease .9s forwards;transition:color .4s;
+}
+.hero-pills{
+  display:flex;gap:0;justify-content:center;flex-wrap:wrap;
+  margin-bottom:56px;opacity:0;animation:fadeUp .8s ease 1s forwards;
+}
+.pill{
+  padding:9px 20px;border:1px solid var(--border);font-size:9.5px;
+  letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:4px;transition:all .3s;
+}
+.pill:hover{background:var(--gold-faint);border-color:var(--gold);}
+.hero-btns{
+  display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+  opacity:0;animation:fadeUp .8s ease 1.1s forwards;
+}
+.btn-p{
+  padding:15px 42px;background:var(--gold);color:var(--bg);
+  font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+  text-decoration:none;transition:all .3s;display:inline-block;
+}
+.btn-p:hover{background:var(--gold-lt);transform:translateY(-2px);box-shadow:0 12px 36px var(--shadow-btn);}
+.btn-s{
+  padding:14px 42px;border:1px solid var(--gold);color:var(--gold);
+  font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;
+  text-decoration:none;transition:all .3s;display:inline-block;
+}
+.btn-s:hover{background:var(--gold-faint);transform:translateY(-2px);}
+.hero-scroll{
+  position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-size:9px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--text-m);opacity:0;animation:fadeIn 1s ease 1.5s forwards;
+}
+.hero-scroll-l{width:1px;height:34px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s ease infinite;}
+
+/* ══ STATS ══ */
+.stats{
+  background:var(--bg-mid);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:46px 60px;display:grid;grid-template-columns:repeat(4,1fr);
+  position:relative;z-index:1;transition:background .4s;
+}
+.stat{
+  text-align:center;padding:18px;border-right:1px solid var(--border);
+  opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s;
+}
+.stat:last-child{border-right:none;}
+.stat.vis{opacity:1;transform:translateY(0);}
+.stat-n{
+  font-family:'Cormorant Garamond',serif;font-size:46px;font-weight:600;
+  color:var(--stat-c);line-height:1;display:block;transition:color .4s;
+}
+.stat-l{font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-m);margin-top:8px;display:block;transition:color .4s;}
+
+/* ══ SHARED SECTION ══ */
+section{position:relative;z-index:1;}
+.s-eye{font-size:9.5px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:13px;display:block;transition:color .4s;}
+.s-ttl{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(32px,5vw,56px);
+  font-weight:600;color:var(--text-h);line-height:1.1;letter-spacing:2px;transition:color .4s;
+}
+.s-ttl em{font-style:italic;color:var(--gold);transition:color .4s;}
+.s-rule{display:flex;align-items:center;gap:12px;justify-content:center;margin-top:17px;}
+.s-rl{width:38px;height:1px;background:var(--gold);opacity:.4;transition:background .4s;}
+.s-rd{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);transition:background .4s;}
+.s-hdr{text-align:center;margin-bottom:62px;}
+
+/* ══ SERVICES ══ */
+.services{padding:108px 60px;background:var(--bg);transition:background .4s;}
+.svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;max-width:1100px;margin:0 auto;}
+.svc-card{
+  background:var(--bg-card);padding:52px 44px;position:relative;overflow:hidden;
+  cursor:default;opacity:0;transform:translateY(28px);
+  transition:opacity .6s,transform .6s,background .3s;
+}
+.svc-card.vis{opacity:1;transform:translateY(0);}
+.svc-card:hover{background:var(--bg-light);}
+.svc-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--gold);transition:height .4s;}
+.svc-card:hover::before{height:100%;}
+.svc-card::after{
+  content:'';position:absolute;bottom:-60px;right:-60px;
+  width:170px;height:170px;border-radius:50%;
+  border:1px solid var(--border);transition:all .4s;
+}
+.svc-card:hover::after{border-color:var(--border-hov);transform:scale(1.1);}
+.svc-ico{
+  width:50px;height:50px;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:22px;color:var(--gold);transition:all .3s;
+}
+.svc-card:hover .svc-ico{background:var(--gold);color:var(--bg);border-color:var(--gold);}
+.svc-num{
+  position:absolute;top:18px;right:24px;font-family:'Cormorant Garamond',serif;
+  font-size:74px;font-weight:600;color:var(--svc-n);line-height:1;pointer-events:none;
+}
+.svc-t{font-family:'Cormorant Garamond',serif;font-size:25px;font-weight:600;color:var(--text-h);margin-bottom:13px;letter-spacing:1px;transition:color .4s;}
+.svc-d{font-size:12.5px;line-height:1.85;color:var(--text-sub);font-weight:300;transition:color .4s;}
+.svc-lnk{
+  display:inline-flex;align-items:center;gap:9px;margin-top:22px;
+  font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--gold);text-decoration:none;opacity:0;transition:opacity .3s,gap .3s;
+}
+.svc-card:hover .svc-lnk{opacity:1;}
+.svc-lnk:hover{gap:17px;}
+
+/* ══ ABOUT ══ */
+.about{padding:108px 60px;background:var(--bg-mid);transition:background .4s;}
+.about-in{max-width:1200px;margin:0 auto;display:flex;gap:68px;align-items:center;flex-wrap:wrap;}
+.about-vis{flex:0 0 375px;max-width:100%;position:relative;}
+.acard{
+  background:var(--bg-card);border:1px solid var(--border);padding:52px;
+  position:relative;z-index:1;transition:background .4s,border-color .4s;
+}
+.acard::before{
+  content:'';position:absolute;top:-11px;left:-11px;right:11px;bottom:11px;
+  border:1px solid var(--border);z-index:-1;transition:border-color .4s;
+}
+.acard-logo{
+  width:72px;height:72px;border:2px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;
+  color:var(--gold);margin-bottom:24px;transition:all .4s;
+}
+.acard-firm{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:var(--text-h);letter-spacing:2px;text-transform:uppercase;line-height:1.2;margin-bottom:5px;transition:color .4s;}
+.acard-role{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-m);margin-bottom:28px;transition:color .4s;}
+.arow{display:flex;align-items:flex-start;gap:11px;font-size:11.5px;color:var(--text-sub);line-height:1.55;margin-bottom:13px;transition:color .4s;}
+.arow svg{flex-shrink:0;margin-top:2px;color:var(--gold);}
+.about-c{flex:1;min-width:280px;}
+.about-c .s-hdr{text-align:left;margin-bottom:26px;}
+.about-c .s-rule{justify-content:flex-start;}
+.abody{font-size:13.5px;line-height:2;color:var(--text-sub);font-weight:300;margin-bottom:17px;transition:color .4s;}
+.avals{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:34px;}
+.aval{padding:17px 21px;border:1px solid var(--border);transition:all .3s;}
+.aval:hover{border-color:var(--border-hov);background:var(--gold-faint);}
+.aval-l{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:5px;display:block;}
+.aval-d{font-size:11.5px;color:var(--text-sub);line-height:1.6;}
+
+/* ══ WHY ══ */
+.why{padding:108px 60px;background:var(--bg);transition:background .4s;}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1100px;margin:0 auto;}
+.why-item{
+  padding:46px 34px;background:var(--bg-card);text-align:center;
+  opacity:0;transform:translateY(20px);
+  transition:opacity .6s,transform .6s,background .3s;
+}
+.why-item.vis{opacity:1;transform:translateY(0);}
+.why-item:hover{background:var(--bg-light);}
+.why-ico{
+  width:46px;height:46px;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);margin:0 auto 20px;transition:all .3s;
+}
+.why-item:hover .why-ico{background:var(--gold-faint);border-color:var(--gold);}
+.why-t{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--text-h);margin-bottom:10px;font-weight:600;transition:color .4s;}
+.why-d{font-size:11.5px;line-height:1.8;color:var(--text-sub);font-weight:300;transition:color .4s;}
+
+/* ══ CONTACT ══ */
+.contact{padding:108px 60px;background:var(--bg-mid);transition:background .4s;}
+.contact-in{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:72px;align-items:start;}
+.c-items{margin-top:34px;display:flex;flex-direction:column;gap:24px;}
+.c-item{display:flex;gap:16px;align-items:flex-start;}
+.c-ico{
+  width:40px;height:40px;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);flex-shrink:0;transition:all .3s;
+}
+.c-item:hover .c-ico{border-color:var(--gold);background:var(--gold-faint);}
+.c-lbl{font-size:8.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-m);margin-bottom:4px;display:block;}
+.c-val{font-size:12.5px;color:var(--text-b);line-height:1.6;font-weight:300;transition:color .4s;}
+.c-val a{color:var(--text-b);text-decoration:none;transition:color .3s;}
+.c-val a:hover{color:var(--gold);}
+.c-blurb{font-size:12.5px;line-height:1.95;color:var(--text-sub);font-weight:300;margin-top:20px;transition:color .4s;}
+.f-ttl{font-family:'Cormorant Garamond',serif;font-size:25px;color:var(--text-h);margin-bottom:26px;font-weight:500;transition:color .4s;}
+.fg{margin-bottom:17px;}
+.fg label{display:block;font-size:8.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-m);margin-bottom:7px;}
+.fg input,.fg textarea,.fg select{
+  width:100%;background:var(--bg-input);border:1px solid var(--border);
+  padding:13px 15px;color:var(--text-b);font-family:'Montserrat',sans-serif;
+  font-size:12.5px;font-weight:300;outline:none;transition:all .3s;
+  -webkit-appearance:none;appearance:none;
+}
+.fg select{
+  cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9984A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:34px;
+}
+[data-theme="light"] .fg select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%239B6A0A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+.fg select option{background:var(--bg-card);}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--gold);background:var(--gold-faint);}
+.fg textarea{resize:vertical;min-height:112px;}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.f-sub{
+  width:100%;padding:14px;background:var(--gold);color:var(--bg);
+  font-family:'Montserrat',sans-serif;font-size:10.5px;font-weight:700;
+  letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;
+  transition:all .3s;margin-top:5px;
+}
+.f-sub:hover{background:var(--gold-lt);transform:translateY(-2px);box-shadow:0 8px 26px var(--shadow-btn);}
+
+/* ══ FOOTER ══ */
+footer{
+  background:var(--bg-footer);border-top:1px solid var(--border);
+  padding:50px 60px;display:flex;align-items:center;
+  justify-content:space-between;flex-wrap:wrap;gap:20px;transition:background .4s;
+}
+.f-brand{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--gold);letter-spacing:3px;text-transform:uppercase;}
+.f-copy{font-size:10.5px;color:var(--text-m);margin-top:5px;letter-spacing:1px;}
+.f-links{display:flex;gap:26px;list-style:none;}
+.f-links a{font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--text-sub);text-decoration:none;transition:color .3s;}
+.f-links a:hover{color:var(--gold);}
+.f-social{display:flex;gap:9px;}
+.soc{width:34px;height:34px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--gold);text-decoration:none;transition:all .3s;}
+.soc:hover{background:var(--gold-faint);border-color:var(--gold);}
+
+/* ══ MOBILE MENU ══ */
+#mobMenu{
+  display:none;position:fixed;inset:0;background:var(--bg);z-index:999;
+  flex-direction:column;align-items:center;justify-content:center;gap:30px;
+  transition:background .4s;
+}
+.mob-lnk{font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--gold);text-decoration:none;letter-spacing:4px;}
+
+/* ══ KEYFRAMES ══ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes scrollPulse{0%,100%{opacity:.4;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.2)}}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:1050px){
+  nav,nav.scrolled{padding:16px 22px;}
+  .nav-links{display:none;}
+  .nav-cta{display:none;}
+  .hamburger{display:flex;}
+  .stats{grid-template-columns:repeat(2,1fr);padding:34px 22px;}
+  .stat:nth-child(2){border-right:none;}
+  .services,.about,.why,.contact{padding:68px 22px;}
+  .svc-grid,.why-grid{grid-template-columns:1fr;}
+  .about-in{flex-direction:column;gap:38px;}
+  .about-vis{flex:none;width:100%;}
+  .avals{grid-template-columns:1fr;}
+  .contact-in{grid-template-columns:1fr;gap:42px;}
+  .f-row{grid-template-columns:1fr;}
+  footer{padding:34px 22px;flex-direction:column;align-items:flex-start;}
+}
+@media(max-width:500px){
+  .hero-btns{flex-direction:column;align-items:center;}
+  .btn-p,.btn-s{width:240px;text-align:center;}
+  .lang-trigger .lang-lbl{display:none;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">R</div>
+    <div class="nav-logo-text">Ranasinghe<span>& Associates</span></div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#services" data-i18n="nav_svc" class="lt">Services</a></li>
+    <li><a href="#about"    data-i18n="nav_abt" class="lt">About</a></li>
+    <li><a href="#why"      data-i18n="nav_why" class="lt">Why Us</a></li>
+    <li><a href="#contact"  data-i18n="nav_con" class="lt">Contact</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <!-- Language Switcher -->
+    <div class="lang-sw">
+      <button class="lang-trigger" id="langTrig" onclick="toggleLang()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        <span class="lang-lbl" id="langLbl">EN</span>
+        <svg class="chev" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="lang-dd" id="langDd">
+        <div class="lang-opt active" data-lv="en" onclick="setLang('en')">
+          <span style="font-size:15px">🇬🇧</span>
+          <div class="lang-opt-names"><span class="lang-opt-code">EN</span><span class="lang-opt-nat">English</span></div>
+          <svg class="lang-chk" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="lang-opt" data-lv="si" onclick="setLang('si')">
+          <span style="font-size:15px">🇱🇰</span>
+          <div class="lang-opt-names"><span class="lang-opt-code">SI</span><span class="lang-opt-nat" style="font-family:'Noto Sans Sinhala',sans-serif;">සිංහල</span></div>
+          <svg class="lang-chk" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="lang-opt" data-lv="ta" onclick="setLang('ta')">
+          <span style="font-size:15px">🇱🇰</span>
+          <div class="lang-opt-names"><span class="lang-opt-code">TA</span><span class="lang-opt-nat" style="font-family:'Noto Sans Tamil',sans-serif;">தமிழ்</span></div>
+          <svg class="lang-chk" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-btn" onclick="toggleTheme()" title="Toggle light/dark">
+      <svg class="i-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+      </svg>
+      <svg class="i-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+
+    <a href="#contact" class="nav-cta lt" data-i18n="nav_cta">Get in Touch</a>
+  </div>
+
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobMenu">
+  <a href="#services" class="mob-lnk lt" data-i18n="nav_svc" onclick="toggleMenu()">Services</a>
+  <a href="#about"    class="mob-lnk lt" data-i18n="nav_abt" onclick="toggleMenu()">About</a>
+  <a href="#why"      class="mob-lnk lt" data-i18n="nav_why" onclick="toggleMenu()">Why Us</a>
+  <a href="#contact"  class="mob-lnk lt" data-i18n="nav_con" onclick="toggleMenu()">Contact</a>
+  <button onclick="toggleMenu()" style="position:absolute;top:22px;right:26px;background:none;border:none;color:var(--gold);font-size:26px;cursor:pointer;">✕</button>
+</div>
+
+<!-- ══ HERO ══ -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <div class="hero-bg-c"></div><div class="hero-bg-c"></div><div class="hero-bg-c"></div>
+    <div class="hero-bg-l"></div><div class="hero-bg-l"></div>
+    <div class="hero-glow"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge lt" data-i18n="badge">Trusted Since Establishment</div>
+    <div class="hero-mono">
+      <svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 15 L20 85" stroke="var(--gold)" stroke-width="6" stroke-linecap="round"/>
+        <path d="M20 15 L52 15 Q68 15 68 32 Q68 48 52 50 L20 50" stroke="var(--gold)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M48 50 L70 85" stroke="var(--gold)" stroke-width="6" stroke-linecap="round"/>
+        <path d="M75 85 L92 30 L109 85" stroke="var(--gold)" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M80 65 L104 65" stroke="var(--gold)" stroke-width="4" stroke-linecap="round"/>
+        <path d="M84 22 L92 10 L100 22" stroke="var(--gold)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+    <h1 class="hero-title lt" data-i18n="h_title">Ranasinghe</h1>
+    <p class="hero-sub lt" data-i18n="h_sub">& Associates</p>
+    <div class="hero-div"><div class="hero-div-l"></div><div class="hero-div-d"></div><div class="hero-div-l"></div></div>
+    <p class="hero-tag lt" data-i18n="h_tag">Assurance · Accounting · Tax Services</p>
+    <div class="hero-pills">
+      <span class="pill lt" data-i18n="s_aud">Auditing</span>
+      <span class="pill lt" data-i18n="s_tax">Tax Preparation</span>
+      <span class="pill lt" data-i18n="s_bk">Bookkeeping</span>
+      <span class="pill lt" data-i18n="s_fin">Financial Consulting</span>
+    </div>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-p lt" data-i18n="cta1">Schedule Consultation</a>
+      <a href="#services" class="btn-s lt" data-i18n="cta2">Our Services</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-l"></div>
+    <span class="lt" data-i18n="scroll">Scroll</span>
+  </div>
+</section>
+
+<!-- ══ STATS ══ -->
+<div class="stats" id="stats">
+  <div class="stat"><span class="stat-n" data-count="15">0</span><span class="stat-l lt" data-i18n="st_exp">Years of Experience</span></div>
+  <div class="stat"><span class="stat-n" data-count="500">0</span><span class="stat-l lt" data-i18n="st_cli">Clients Served</span></div>
+  <div class="stat"><span class="stat-n" data-count="4">0</span><span class="stat-l lt" data-i18n="st_svc">Core Services</span></div>
+  <div class="stat"><span class="stat-n" data-count="2">0</span><span class="stat-l lt" data-i18n="st_off">Office Locations</span></div>
+</div>
+
+<!-- ══ SERVICES ══ -->
+<section class="services" id="services">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="s-hdr">
+      <span class="s-eye lt" data-i18n="svc_eye">What We Offer</span>
+      <h2 class="s-ttl lt" data-i18n="svc_h">Our <em>Services</em></h2>
+      <div class="s-rule"><div class="s-rl"></div><div class="s-rd"></div><div class="s-rl"></div></div>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card"><div class="svc-num">01</div>
+        <div class="svc-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><path d="M8 11h6"/><path d="M11 8v6"/></svg></div>
+        <h3 class="svc-t lt" data-i18n="s_aud">Auditing</h3>
+        <p class="svc-d lt" data-i18n="d_aud">Comprehensive audit services designed to provide independent, objective assessments of your financial statements and internal controls. We deliver insights that build stakeholder confidence and regulatory compliance.</p>
+        <a href="#contact" class="svc-lnk lt" data-i18n="enquire">Enquire Now <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="svc-card"><div class="svc-num">02</div>
+        <div class="svc-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 10h10M7 14h4"/></svg></div>
+        <h3 class="svc-t lt" data-i18n="s_tax">Tax Preparation</h3>
+        <p class="svc-d lt" data-i18n="d_tax">Expert tax planning and preparation services for individuals and businesses. We navigate Sri Lanka's tax regulations with precision, identifying legal opportunities to minimise liability and ensure full compliance.</p>
+        <a href="#contact" class="svc-lnk lt" data-i18n="enquire">Enquire Now <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="svc-card"><div class="svc-num">03</div>
+        <div class="svc-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <h3 class="svc-t lt" data-i18n="s_bk">Bookkeeping</h3>
+        <p class="svc-d lt" data-i18n="d_bk">Meticulous day-to-day financial record keeping that forms the backbone of your business intelligence. Our systematic approach ensures your books are always accurate, current, and ready for strategic decisions.</p>
+        <a href="#contact" class="svc-lnk lt" data-i18n="enquire">Enquire Now <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="svc-card"><div class="svc-num">04</div>
+        <div class="svc-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+        <h3 class="svc-t lt" data-i18n="s_fin">Financial Consulting</h3>
+        <p class="svc-d lt" data-i18n="d_fin">Strategic financial advisory that empowers business growth. From cash flow management to investment analysis, we provide the guidance and insights needed to achieve your long-term financial objectives.</p>
+        <a href="#contact" class="svc-lnk lt" data-i18n="enquire">Enquire Now <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section class="about" id="about">
+  <div class="about-in">
+    <div class="about-vis">
+      <div class="acard">
+        <div class="acard-logo">R</div>
+        <div class="acard-firm">Ranasinghe<br>& Associates</div>
+        <div class="acard-role lt" data-i18n="a_role">Managing Partner · P. Ranasinghe</div>
+        <div>
+          <div class="arow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>No. 93, Habarakada West, Thawalama, Galle</div>
+          <div class="arow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>No. 176/A, Polhengoda Road, Colombo 05</div>
+          <div class="arow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 11.9a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 1.11h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg>0773 412 249 &nbsp;·&nbsp; 0763 852 637</div>
+          <div class="arow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>ranasinghe2444@gmail.com</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-c">
+      <div class="s-hdr" style="text-align:left;margin-bottom:26px;">
+        <span class="s-eye lt" data-i18n="a_eye">Who We Are</span>
+        <h2 class="s-ttl lt" data-i18n="a_h">Trusted Financial <em>Partners</em></h2>
+        <div class="s-rule" style="justify-content:flex-start;"><div class="s-rl"></div><div class="s-rd"></div><div class="s-rl"></div></div>
+      </div>
+      <p class="abody lt" data-i18n="a_p1">Ranasinghe & Associates is a premier accounting and assurance firm committed to delivering exceptional financial services across Sri Lanka. Led by P. Ranasinghe, our Managing Partner, we combine deep technical expertise with a client-first philosophy.</p>
+      <p class="abody lt" data-i18n="a_p2">With offices in both Galle and Colombo, we serve a diverse portfolio of clients — from growing SMEs to established corporations — providing the clarity and confidence they need to make informed financial decisions.</p>
+      <div class="avals">
+        <div class="aval"><span class="aval-l lt" data-i18n="v_int">Integrity</span><div class="aval-d lt" data-i18n="v_int_d">Unwavering ethical standards in every engagement.</div></div>
+        <div class="aval"><span class="aval-l lt" data-i18n="v_pre">Precision</span><div class="aval-d lt" data-i18n="v_pre_d">Meticulous attention to every financial detail.</div></div>
+        <div class="aval"><span class="aval-l lt" data-i18n="v_exp">Expertise</span><div class="aval-d lt" data-i18n="v_exp_d">Deep knowledge across all areas of accountancy.</div></div>
+        <div class="aval"><span class="aval-l lt" data-i18n="v_com">Commitment</span><div class="aval-d lt" data-i18n="v_com_d">Dedicated to your long-term financial success.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHY ══ -->
+<section class="why" id="why">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="s-hdr">
+      <span class="s-eye lt" data-i18n="w_eye">Why Choose Us</span>
+      <h2 class="s-ttl lt" data-i18n="w_h">The <em>Difference</em> We Make</h2>
+      <div class="s-rule"><div class="s-rl"></div><div class="s-rd"></div><div class="s-rl"></div></div>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3 class="why-t lt" data-i18n="w1_t">Regulatory Compliance</h3>
+        <p class="why-d lt" data-i18n="w1_d">We ensure your business stays fully compliant with Sri Lankan tax laws and accounting standards, reducing risk and protecting your interests at every level.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3 class="why-t lt" data-i18n="w2_t">Personalised Service</h3>
+        <p class="why-d lt" data-i18n="w2_d">Every client receives dedicated attention from our senior team. We take the time to understand your unique needs and tailor our solutions accordingly.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h3 class="why-t lt" data-i18n="w3_t">Timely Delivery</h3>
+        <p class="why-d lt" data-i18n="w3_d">We understand that deadlines are critical in financial reporting. Our structured processes ensure you always receive accurate work on time, every time.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3 class="why-t lt" data-i18n="w4_t">Cost-Effective Solutions</h3>
+        <p class="why-d lt" data-i18n="w4_d">Quality financial services should be accessible. We offer competitive pricing structures without compromising on the depth and quality of our expertise.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+        <h3 class="why-t lt" data-i18n="w5_t">Strategic Insight</h3>
+        <p class="why-d lt" data-i18n="w5_d">Beyond compliance, we provide forward-looking analysis and strategic counsel that helps drive sustainable business growth and profitability.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <h3 class="why-t lt" data-i18n="w6_t">Proven Track Record</h3>
+        <p class="why-d lt" data-i18n="w6_d">Hundreds of satisfied clients across Galle, Colombo, and beyond stand as testament to our consistent delivery of exceptional accounting services.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section class="contact" id="contact">
+  <div class="contact-in">
+    <div>
+      <div class="s-hdr" style="text-align:left;margin-bottom:10px;">
+        <span class="s-eye lt" data-i18n="c_eye">Get in Touch</span>
+        <h2 class="s-ttl lt" data-i18n="c_h">Let's <em>Talk</em></h2>
+        <div class="s-rule" style="justify-content:flex-start;"><div class="s-rl"></div><div class="s-rd"></div><div class="s-rl"></div></div>
+      </div>
+      <p class="c-blurb lt" data-i18n="c_blurb">Ready to take control of your finances? Reach out for a consultation and discover how Ranasinghe & Associates can support your financial goals.</p>
+      <div class="c-items">
+        <div class="c-item"><div class="c-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><span class="c-lbl lt" data-i18n="c_galle">Galle Office</span><div class="c-val">No. 93, Habarakada West<br>Thawalama, Galle</div></div></div>
+        <div class="c-item"><div class="c-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><span class="c-lbl lt" data-i18n="c_col">Colombo Office</span><div class="c-val">No. 176/A, Polhengoda Road<br>Colombo 05</div></div></div>
+        <div class="c-item"><div class="c-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 11.9a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 1.11h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/></svg></div><div><span class="c-lbl lt" data-i18n="c_ph">Phone</span><div class="c-val"><a href="tel:+94773412249">0773 412 249</a><br><a href="tel:+94763852637">0763 852 637</a></div></div></div>
+        <div class="c-item"><div class="c-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><span class="c-lbl lt" data-i18n="c_em">Email</span><div class="c-val"><a href="mailto:ranasinghe2444@gmail.com">ranasinghe2444@gmail.com</a></div></div></div>
+      </div>
+    </div>
+    <div>
+      <h3 class="f-ttl lt" data-i18n="f_ttl">Send Us a Message</h3>
+      <div class="f-row">
+        <div class="fg"><label class="lt" data-i18n="f_name">Full Name</label><input type="text" data-ph="ph_name" placeholder="Your name"></div>
+        <div class="fg"><label class="lt" data-i18n="f_ph">Phone Number</label><input type="tel" data-ph="ph_phone" placeholder="Your number"></div>
+      </div>
+      <div class="fg"><label class="lt" data-i18n="f_em">Email Address</label><input type="email" data-ph="ph_email" placeholder="your@email.com"></div>
+      <div class="fg">
+        <label class="lt" data-i18n="f_svc">Service of Interest</label>
+        <select>
+          <option value="" disabled selected data-i18n="f_sel">Select a service</option>
+          <option data-i18n="s_aud">Auditing</option>
+          <option data-i18n="s_tax">Tax Preparation</option>
+          <option data-i18n="s_bk">Bookkeeping</option>
+          <option data-i18n="s_fin">Financial Consulting</option>
+          <option data-i18n="f_gen">General Enquiry</option>
+        </select>
+      </div>
+      <div class="fg"><label class="lt" data-i18n="f_msg">Message</label><textarea data-ph="ph_msg" placeholder="Tell us about your requirements..."></textarea></div>
+      <button class="f-sub lt" data-i18n="f_send" onclick="handleSubmit(event)">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div>
+    <div class="f-brand">Ranasinghe & Associates</div>
+    <div class="f-copy lt" data-i18n="f_copy">© 2025 Ranasinghe & Associates. All rights reserved.</div>
+  </div>
+  <ul class="f-links">
+    <li><a href="#services" class="lt" data-i18n="nav_svc">Services</a></li>
+    <li><a href="#about"    class="lt" data-i18n="nav_abt">About</a></li>
+    <li><a href="#contact"  class="lt" data-i18n="nav_con">Contact</a></li>
+  </ul>
+  <div class="f-social">
+    <a href="#" class="soc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+    <a href="mailto:ranasinghe2444@gmail.com" class="soc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+    <a href="tel:+94773412249" class="soc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.11 11.9a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3 1.11h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16z"/></svg></a>
+  </div>
+</footer>
+
+<script>
+/* ══════════════════════════════════════════
+   TRANSLATIONS
+══════════════════════════════════════════ */
+const T = {
+en:{
+  nav_svc:"Services",nav_abt:"About",nav_why:"Why Us",nav_con:"Contact",nav_cta:"Get in Touch",
+  badge:"Trusted Since Establishment",
+  h_title:"Ranasinghe",h_sub:"& Associates",h_tag:"Assurance · Accounting · Tax Services",
+  s_aud:"Auditing",s_tax:"Tax Preparation",s_bk:"Bookkeeping",s_fin:"Financial Consulting",
+  cta1:"Schedule Consultation",cta2:"Our Services",scroll:"Scroll",
+  st_exp:"Years of Experience",st_cli:"Clients Served",st_svc:"Core Services",st_off:"Office Locations",
+  svc_eye:"What We Offer",svc_h:"Our <em>Services</em>",
+  d_aud:"Comprehensive audit services designed to provide independent, objective assessments of your financial statements and internal controls. We deliver insights that build stakeholder confidence and regulatory compliance.",
+  d_tax:"Expert tax planning and preparation services for individuals and businesses. We navigate Sri Lanka's tax regulations with precision, identifying legal opportunities to minimise liability and ensure full compliance.",
+  d_bk:"Meticulous day-to-day financial record keeping that forms the backbone of your business intelligence. Our systematic approach ensures your books are always accurate, current, and ready for strategic decisions.",
+  d_fin:"Strategic financial advisory that empowers business growth. From cash flow management to investment analysis, we provide the guidance and insights needed to achieve your long-term financial objectives.",
+  enquire:"Enquire Now",
+  a_eye:"Who We Are",a_h:"Trusted Financial <em>Partners</em>",a_role:"Managing Partner · P. Ranasinghe",
+  a_p1:"Ranasinghe & Associates is a premier accounting and assurance firm committed to delivering exceptional financial services across Sri Lanka. Led by P. Ranasinghe, our Managing Partner, we combine deep technical expertise with a client-first philosophy.",
+  a_p2:"With offices in both Galle and Colombo, we serve a diverse portfolio of clients — from growing SMEs to established corporations — providing the clarity and confidence they need to make informed financial decisions.",
+  v_int:"Integrity",v_int_d:"Unwavering ethical standards in every engagement.",
+  v_pre:"Precision",v_pre_d:"Meticulous attention to every financial detail.",
+  v_exp:"Expertise",v_exp_d:"Deep knowledge across all areas of accountancy.",
+  v_com:"Commitment",v_com_d:"Dedicated to your long-term financial success.",
+  w_eye:"Why Choose Us",w_h:"The <em>Difference</em> We Make",
+  w1_t:"Regulatory Compliance",w1_d:"We ensure your business stays fully compliant with Sri Lankan tax laws and accounting standards, reducing risk and protecting your interests at every level.",
+  w2_t:"Personalised Service",w2_d:"Every client receives dedicated attention from our senior team. We take the time to understand your unique needs and tailor our solutions accordingly.",
+  w3_t:"Timely Delivery",w3_d:"We understand that deadlines are critical in financial reporting. Our structured processes ensure you always receive accurate work on time, every time.",
+  w4_t:"Cost-Effective Solutions",w4_d:"Quality financial services should be accessible. We offer competitive pricing structures without compromising on the depth and quality of our expertise.",
+  w5_t:"Strategic Insight",w5_d:"Beyond compliance, we provide forward-looking analysis and strategic counsel that helps drive sustainable business growth and profitability.",
+  w6_t:"Proven Track Record",w6_d:"Hundreds of satisfied clients across Galle, Colombo, and beyond stand as testament to our consistent delivery of exceptional accounting services.",
+  c_eye:"Get in Touch",c_h:"Let's <em>Talk</em>",
+  c_blurb:"Ready to take control of your finances? Reach out for a consultation and discover how Ranasinghe & Associates can support your financial goals.",
+  c_galle:"Galle Office",c_col:"Colombo Office",c_ph:"Phone",c_em:"Email",
+  f_ttl:"Send Us a Message",f_name:"Full Name",f_ph:"Phone Number",f_em:"Email Address",
+  f_svc:"Service of Interest",f_sel:"Select a service",f_gen:"General Enquiry",
+  f_msg:"Message",f_send:"Send Message",
+  ph_name:"Your name",ph_phone:"Your number",ph_email:"your@email.com",ph_msg:"Tell us about your requirements...",
+  f_copy:"© 2025 Ranasinghe & Associates. All rights reserved.",sent:"✓ Message Sent"
+},
+si:{
+  nav_svc:"සේවා",nav_abt:"අප ගැන",nav_why:"ඇයි අප?",nav_con:"සම්බන්ධ වන්න",nav_cta:"සම්බන්ධ වන්න",
+  badge:"ආරම්භයේ සිට විශ්වාසනීය",
+  h_title:"රණසිංහ",h_sub:"සහ සහකරුවන්",h_tag:"සහතිකය · ගිණුම්කරණය · බදු සේවා",
+  s_aud:"විගණනය",s_tax:"බදු සකස් කිරීම",s_bk:"පොත් තැබීම",s_fin:"මූල්‍ය උපදේශනය",
+  cta1:"උපදේශනය සාකච්ඡා කරන්න",cta2:"අපගේ සේවා",scroll:"පහතට",
+  st_exp:"අත්දැකීම් වර්ෂ",st_cli:"සේවා ලත් සේවාදායකයින්",st_svc:"මූලික සේවා",st_off:"කාර්යාල ස්ථාන",
+  svc_eye:"අපි ලබා දෙන්නේ",svc_h:"අපගේ <em>සේවා</em>",
+  d_aud:"ඔබේ මූල්‍ය ප්‍රකාශ සහ අභ්‍යන්තර පාලන සම්බන්ධයෙන් ස්වාධීන, වෛෂයික තක්සේරු ලබා දීමට නිර්මාණය කරන ලද සවිස්තරාත්මක විගණන සේවා. අපි පාර්ශ්වකරු විශ්වාසය සහ නියාමක අනුකූලතාව ශක්තිමත් කරන අවබෝධය ලබා දෙමු.",
+  d_tax:"පුද්ගලයන් සහ ව්‍යාපාර සඳහා විශේෂඥ බදු සැලසුම් සහ සකස් කිරීමේ සේවා. අපි ශ්‍රී ලංකාවේ බදු රෙගුලාසි නිරවද්‍යතාවෙන් සනාල කරමු, නීත්‍යානුකූල අවස්ථා හඳුනා ගනිමු.",
+  d_bk:"ඔබේ ව්‍යාපාර බුද්ධියේ කොඳු නාරටිය සෑදෙන නිතිපතා මූල්‍ය වාර්තා තැබීම. අපගේ ක්‍රමානුකූල ප්‍රවේශය ඔබේ ගිණුම් සෑම විටම නිවැරදිව, යාවත්කාලීනව, උපාය මාර්ගික තීරණ සඳහා සූදානමින් තිබෙන බව සහතික කරයි.",
+  d_fin:"ව්‍යාපාර වර්ධනය සශ්‍රීකව ශක්තිමත් කරන උපාය මාර්ගික මූල්‍ය උපදේශනය. මුදල් ප්‍රවාහ කළමනාකරණයේ සිට ආයෝජන විශ්ලේෂණය දක්වා, ඔබේ දිගු කාලීන මූල්‍ය අරමුණු සාක්ෂාත් කර ගැනීමට අවශ්‍ය මගපෙන්වීම ලබා දෙමු.",
+  enquire:"දැන් විමසන්න",
+  a_eye:"අප ගැන",a_h:"විශ්වාසනීය මූල්‍ය <em>හවුල්කරුවන්</em>",a_role:"කළමනාකරු හවුල්කරු · P. රණසිංහ",
+  a_p1:"රණසිංහ & සහකරුවන් ශ්‍රී ලංකාව පුරා ව්‍යාපාරික ගිණුම්කරණ සේවා ලබා දීමට කැපවූ ප්‍රමුඛ ගිණුම්කරණ ආයතනයකි. P. රණසිංහ, අපගේ කළමනාකරු හවුල්කරු, ගැඹුරු තාක්ෂණික ප්‍රවීණතාවය සහ සේවාදායක ප්‍රථම දර්ශනය ඒකාබද්ධ කරයි.",
+  a_p2:"ගාල්ල සහ කොළඹ යන දෙකෙහිම කාර්යාල සහිතව, වර්ධනය වෙමින් පවතින SME ආයතනවලින් ආරම්භ කර ස්ථාපිත සංස්ථා දක්වා විවිධ සේවාදායකයින් සේවය කරමු.",
+  v_int:"අඛණ්ඩතාව",v_int_d:"සෑම නියැලීමකදීම නොසෙල්විය හැකි ආචාර ධර්ම ප්‍රමිතීන්.",
+  v_pre:"නිරවද්‍යතාව",v_pre_d:"සෑම මූල්‍ය විස්තරයකටම ඉමහත් අවධානය.",
+  v_exp:"ප්‍රවීණතාව",v_exp_d:"ගිණුම්කරණයේ සෑම ක්ෂේත්‍රයකම ගැඹුරු දැනුම.",
+  v_com:"කැපවීම",v_com_d:"ඔබේ දිගු කාලීන මූල්‍ය සාර්ථකත්වයට කැපවී.",
+  w_eye:"ඇයි අපව තෝරා ගත යුත්තේ",w_h:"අපි ඇති කරන <em>වෙනස</em>",
+  w1_t:"නියාමක අනුකූලතාව",w1_d:"ශ්‍රී ලංකාවේ බදු නීති සහ ගිණුම්කරණ ප්‍රමිතීන් සමඟ ඔබේ ව්‍යාපාරය සම්පූර්ණයෙන් අනුකූල ව පවතින බව සහතික කරමු.",
+  w2_t:"පුද්ගලීකරණය කළ සේවා",w2_d:"සෑම සේවාදායකයෙකුම ජ්‍යෙෂ්ඨ කණ්ඩායමේ කැපවූ අවධානය ලබා ගනී. ඔබේ අද්විතීය අවශ්‍යතා තේරුම් ගැනීමට කාලය ගත කරමු.",
+  w3_t:"කාලෝචිත ලෙස ලබා දීම",w3_d:"මූල්‍ය වාර්තාකරණයේ අවසාන දිනයන් ඉතා වැදගත් බව දනිමු. ව්‍යූහගත ක්‍රියාවලි ඔබ නිවැරදි කාර්යය කාලෙන් ලබාගන්නා බව සහතික කරයි.",
+  w4_t:"ලාභදායී විසඳුම්",w4_d:"ගුණාත්මක මූල්‍ය සේවා ප්‍රවේශ විය හැකි විය යුතුය. ප්‍රවීණතාවේ ගැඹුර සම්මුතීනොවී තරඟකාරී මිල ව්‍යූහ ඉදිරිපත් කරමු.",
+  w5_t:"උපාය මාර්ගික ආලෝකය",w5_d:"අනුකූලතාවෙන් ඔබ්බට, ව්‍යාපාර වර්ධනය ශක්තිමත් කිරීමට ඉදිරි-දෙස බලමින් විශ්ලේෂණය සහ උපාය මාර්ගික උපදේශනය ලබා දෙමු.",
+  w6_t:"ඔප්පු කළ ගෙවුම් ලේඛනය",w6_d:"ගාල්ල, කොළඹ සහ ඊළඟ ශ්‍රේෂ්ඨ ගිණුම්කරණ සේවා ලබා දීම සඳහා සේවාදායකයින් සිය ගණනක් සාක්ෂිකරුවන් ලෙස සිටිති.",
+  c_eye:"සම්බන්ධ වන්න",c_h:"අපි <em>කතා කරමු</em>",
+  c_blurb:"ඔබේ මූල්‍ය ලබා ගැනීමට සූදානම්ද? උපදේශනයක් සඳහා සම්බන්ධ වී රණසිංහ & සහකරුවන් ඔබේ ඉලක්ක සඳහා සහාය විය හැකි ආකාරය සොයා ගන්න.",
+  c_galle:"ගාල්ල කාර්යාලය",c_col:"කොළඹ කාර්යාලය",c_ph:"දුරකථනය",c_em:"විද්‍යුත් තැපෑල",
+  f_ttl:"අපට පණිවිඩයක් යවන්න",f_name:"සම්පූර්ණ නම",f_ph:"දුරකථන අංකය",f_em:"විද්‍යුත් තැපෑල",
+  f_svc:"ඔබ කැමති සේවාව",f_sel:"සේවාවක් තෝරන්න",f_gen:"පොදු විමසීම",
+  f_msg:"පණිවිඩය",f_send:"පණිවිඩය යවන්න",
+  ph_name:"ඔබේ නම",ph_phone:"ඔබේ අංකය",ph_email:"ඔබේ@email.com",ph_msg:"ඔබේ අවශ්‍යතා ගැන කියන්න...",
+  f_copy:"© 2025 රණසිංහ & සහකරුවන්. සියලු හිමිකම් ඇවිරිණි.",sent:"✓ පණිවිඩය යවන ලදී"
+},
+ta:{
+  nav_svc:"சேவைகள்",nav_abt:"எங்களைப் பற்றி",nav_why:"ஏன் நாங்கள்?",nav_con:"தொடர்பு",nav_cta:"தொடர்பு கொள்ளுங்கள்",
+  badge:"நிறுவப்பட்டதிலிருந்து நம்பகமான",
+  h_title:"ரணசிங்க",h_sub:"& கூட்டாளர்கள்",h_tag:"உத்தரவாதம் · கணக்கியல் · வரி சேவைகள்",
+  s_aud:"தணிக்கை",s_tax:"வரி தயாரிப்பு",s_bk:"புத்தகப்பதிவு",s_fin:"நிதி ஆலோசனை",
+  cta1:"ஆலோசனை திட்டமிடுங்கள்",cta2:"எங்கள் சேவைகள்",scroll:"கீழே",
+  st_exp:"அனுபவ ஆண்டுகள்",st_cli:"வழங்கிய வாடிக்கையாளர்கள்",st_svc:"முக்கிய சேவைகள்",st_off:"அலுவலக இடங்கள்",
+  svc_eye:"நாங்கள் வழங்குவது",svc_h:"எங்கள் <em>சேவைகள்</em>",
+  d_aud:"உங்கள் நிதி அறிக்கைகள் மற்றும் உள் கட்டுப்பாடுகள் பற்றி சுதந்திரமான மதிப்பீடுகளை வழங்க வடிவமைக்கப்பட்ட விரிவான தணிக்கை சேவைகள். பங்குதாரர் நம்பிக்கை மற்றும் ஒழுங்குமுறை இணக்கத்தை வலுப்படுத்தும் நுண்ணறிவை வழங்குகிறோம்.",
+  d_tax:"தனிநபர்கள் மற்றும் வணிகங்களுக்கான நிபுணர் வரி திட்டமிடல் மற்றும் தயாரிப்பு சேவைகள். இலங்கையின் வரி விதிமுறைகளை துல்லியமாக கையாண்டு, சட்டப்பூர்வ வாய்ப்புகளை அடையாளம் காண்கிறோம்.",
+  d_bk:"உங்கள் வணிக நுண்ணறிவின் முதுகெலும்பை உருவாக்கும் தினசரி நிதி பதிவு வைத்தல். எங்கள் முறையான அணுகுமுறை புத்தகங்கள் எப்போதும் துல்லியமாகவும் தற்போதையதாகவும் இருப்பதை உறுதி செய்கிறது.",
+  d_fin:"வணிக வளர்ச்சியை வலுப்படுத்தும் மூலோபாய நிதி ஆலோசனை. பணப்புழக்க மேலாண்மையிலிருந்து முதலீட்டு பகுப்பாய்வு வரை, நீண்டகால நிதி இலக்குகளை அடைய தேவையான வழிகாட்டுதலை வழங்குகிறோம்.",
+  enquire:"இப்போது விசாரிக்கவும்",
+  a_eye:"நாங்கள் யார்",a_h:"நம்பகமான நிதி <em>கூட்டாளர்கள்</em>",a_role:"நிர்வாக பங்குதாரர் · P. ரணசிங்க",
+  a_p1:"ரணசிங்க & கூட்டாளர்கள் இலங்கை முழுவதும் விதிவிலக்கான நிதி சேவைகளை வழங்குவதில் அர்ப்பணிக்கப்பட்ட ஒரு முன்னணி கணக்கியல் நிறுவனம். P. ரணசிங்க, நிர்வாக பங்குதாரர், ஆழமான தொழில்நுட்ப நிபுணத்துவத்தை வாடிக்கையாளர் கவனிப்புடன் இணைக்கிறார்.",
+  a_p2:"காலி மற்றும் கொழும்பு இரண்டிலும் அலுவலகங்களுடன், வளர்ந்து வரும் சிறு நிறுவனங்கள் முதல் நிறுவப்பட்ட நிறுவனங்கள் வரை பல்வேறு வாடிக்கையாளர்களுக்கு சேவை செய்கிறோம்.",
+  v_int:"நேர்மை",v_int_d:"ஒவ்வொரு ஈடுபாட்டிலும் மாறாத நெறிமுறை தரங்கள்.",
+  v_pre:"துல்லியம்",v_pre_d:"ஒவ்வொரு நிதி விவரத்திலும் கவனமான கவனிப்பு.",
+  v_exp:"நிபுணத்துவம்",v_exp_d:"கணக்கியலின் அனைத்து துறைகளிலும் ஆழமான அறிவு.",
+  v_com:"அர்ப்பணிப்பு",v_com_d:"உங்கள் நீண்டகால நிதி வெற்றிக்கு அர்ப்பணிக்கப்பட்டது.",
+  w_eye:"ஏன் எங்களை தேர்ந்தெடுக்க வேண்டும்",w_h:"நாங்கள் ஏற்படுத்தும் <em>மாற்றம்</em>",
+  w1_t:"ஒழுங்குமுறை இணக்கம்",w1_d:"இலங்கை வரி சட்டங்கள் மற்றும் கணக்கியல் தரங்களுடன் உங்கள் வணிகம் இணக்கமாக இருப்பதை உறுதி செய்கிறோம்.",
+  w2_t:"தனிப்பயனாக்கப்பட்ட சேவை",w2_d:"ஒவ்வொரு வாடிக்கையாளரும் மூத்த குழுவிடம் இருந்து அர்ப்பணிப்பான கவனிப்பை பெறுகிறார்கள்.",
+  w3_t:"சரியான நேரத்தில் வழங்கல்",w3_d:"நிதி அறிக்கையிடலில் காலக்கெடுவை புரிந்துகொண்டு, கட்டமைக்கப்பட்ட செயல்முறைகள் சரியான நேரத்தில் வழங்குவதை உறுதி செய்கிறோம்.",
+  w4_t:"செலவு-திறன் தீர்வுகள்",w4_d:"தரமான நிதி சேவைகள் அணுகக்கூடியதாக இருக்க வேண்டும். நிபுணத்துவத்தில் சமரசம் செய்யாமல் போட்டி விலை கட்டமைப்புகளை வழங்குகிறோம்.",
+  w5_t:"மூலோபாய நுண்ணறிவு",w5_d:"இணக்கத்திற்கு அப்பால், நிலையான வணிக வளர்ச்சியை இயக்க முன்னோக்கு பகுப்பாய்வும் மூலோபாய ஆலோசனையும் வழங்குகிறோம்.",
+  w6_t:"நிரூபிக்கப்பட்ட சாதனைப் பதிவு",w6_d:"காலி, கொழும்பு மற்றும் அதற்கு அப்பால் நூற்றுக்கணக்கான திருப்தியான வாடிக்கையாளர்கள் எங்கள் சேவைகளுக்கு சாட்சியாக உள்ளனர்.",
+  c_eye:"தொடர்பு கொள்ளுங்கள்",c_h:"நாம் <em>பேசலாம்</em>",
+  c_blurb:"உங்கள் நிதியை கட்டுப்படுத்த தயாரா? ஆலோசனைக்காக தொடர்பு கொண்டு ரணசிங்க & கூட்டாளர்கள் எவ்வாறு உதவலாம் என்பதை கண்டறியுங்கள்.",
+  c_galle:"காலி அலுவலகம்",c_col:"கொழும்பு அலுவலகம்",c_ph:"தொலைபேசி",c_em:"மின்னஞ்சல்",
+  f_ttl:"எங்களுக்கு ஒரு செய்தி அனுப்புங்கள்",f_name:"முழு பெயர்",f_ph:"தொலைபேசி எண்",f_em:"மின்னஞ்சல் முகவரி",
+  f_svc:"ஆர்வமுள்ள சேவை",f_sel:"ஒரு சேவையைத் தேர்ந்தெடுக்கவும்",f_gen:"பொது விசாரணை",
+  f_msg:"செய்தி",f_send:"செய்தி அனுப்பு",
+  ph_name:"உங்கள் பெயர்",ph_phone:"உங்கள் எண்",ph_email:"உங்கள்@email.com",ph_msg:"உங்கள் தேவைகளைப் பற்றி சொல்லுங்கள்...",
+  f_copy:"© 2025 ரணசிங்க & கூட்டாளர்கள். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.",sent:"✓ செய்தி அனுப்பப்பட்டது"
+}
+};
+
+let curLang='en', curTheme='dark';
+
+/* ══ THEME ══ */
+function toggleTheme(){
+  curTheme = curTheme==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',curTheme);
+  localStorage.setItem('ra_theme',curTheme);
+}
+
+/* ══ LANGUAGE ══ */
+function toggleLang(){
+  const t=document.getElementById('langTrig'), d=document.getElementById('langDd');
+  t.classList.toggle('open'); d.classList.toggle('open');
+}
+function setLang(lang){
+  curLang=lang;
+  document.documentElement.setAttribute('data-lang',lang);
+  localStorage.setItem('ra_lang',lang);
+  document.getElementById('langLbl').textContent=lang.toUpperCase();
+  document.querySelectorAll('.lang-opt').forEach(el=>el.classList.toggle('active',el.dataset.lv===lang));
+  const t=T[lang];
+  // Apply to all data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(t[k]!==undefined) el.innerHTML=t[k];
+  });
+  // Placeholders
+  document.querySelectorAll('[data-ph]').forEach(el=>{
+    const k=el.getAttribute('data-ph');
+    if(t[k]!==undefined) el.placeholder=t[k];
+  });
+  // Close
+  document.getElementById('langTrig').classList.remove('open');
+  document.getElementById('langDd').classList.remove('open');
+}
+
+/* ══ NAV SCROLL ══ */
+window.addEventListener('scroll',()=>document.getElementById('mainNav').classList.toggle('scrolled',scrollY>50));
+
+/* ══ MOBILE MENU ══ */
+function toggleMenu(){
+  const m=document.getElementById('mobMenu');
+  m.style.display=m.style.display==='flex'?'none':'flex';
+}
+
+/* ══ CLOSE LANG DD ON OUTSIDE CLICK ══ */
+document.addEventListener('click',e=>{
+  if(!document.querySelector('.lang-sw').contains(e.target)){
+    document.getElementById('langTrig').classList.remove('open');
+    document.getElementById('langDd').classList.remove('open');
+  }
+});
+
+/* ══ INTERSECTION OBSERVER ══ */
+const io=new IntersectionObserver((es)=>es.forEach((e,i)=>{
+  if(e.isIntersecting) setTimeout(()=>e.target.classList.add('vis'),i*90);
+}),{threshold:.1});
+document.querySelectorAll('.stat,.svc-card,.why-item').forEach(el=>io.observe(el));
+
+/* ══ COUNTER ══ */
+const co=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting) return;
+    e.target.querySelectorAll('[data-count]').forEach(el=>{
+      const target=+el.dataset.count, suffix=target>=100?'+':(target===2?'':'+');
+      let cur=0,step=target/40;
+      const id=setInterval(()=>{
+        cur=Math.min(cur+step,target);
+        el.textContent=Math.floor(cur)+suffix;
+        if(cur>=target)clearInterval(id);
+      },40);
+    });
+    co.unobserve(e.target);
+  });
+},{threshold:.5});
+const statsEl=document.getElementById('stats');
+if(statsEl)co.observe(statsEl);
+
+/* ══ FORM SUBMIT ══ */
+function handleSubmit(e){
+  const btn=e.target, t=T[curLang];
+  btn.textContent=t.sent||'✓ Sent!';
+  btn.style.cssText='background:#2a7a5e;color:#fff;';
+  setTimeout(()=>{btn.textContent=t.f_send||'Send Message';btn.style.cssText='';},3500);
+}
+
+/* ══ RESTORE PREFERENCES ══ */
+(function(){
+  const th=localStorage.getItem('ra_theme');
+  const la=localStorage.getItem('ra_lang');
+  if(th && th!=='dark') toggleTheme();
+  if(la && la!=='en') setLang(la);
+})();
+</script>
+</body>
+</html>
