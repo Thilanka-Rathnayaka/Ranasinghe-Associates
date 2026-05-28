@@ -482,6 +482,192 @@
         .hero-content h2{font-size:1.9rem;}
         .container{padding:0 1.2rem;}
     }
+
+    /* ============================================================
+       FLOATING WHATSAPP + CALL BUTTONS
+    ============================================================ */
+
+    /* ── Wrapper — right-center of screen ── */
+    .fab-wrap {
+        position: fixed;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: .6rem;
+        padding-right: 0;
+    }
+
+    /* ── Attention popup bubble ── */
+    .fab-bubble {
+        display: flex;
+        align-items: center;
+        gap: .55rem;
+        background: #fff;
+        border: 1px solid rgba(37,211,102,.25);
+        border-radius: 14px 0 0 14px;
+        padding: .65rem 1rem .65rem .85rem;
+        box-shadow: -4px 6px 24px rgba(0,0,0,.12);
+        cursor: pointer;
+        text-decoration: none;
+        /* entrance: slides in from right after 1.8s */
+        animation: bubbleEntrance 0.55s cubic-bezier(.34,1.56,.64,1) 1.8s both;
+        position: relative;
+        margin-right: 58px; /* offset so it sits left of the button column */
+    }
+    [data-theme="dark"] .fab-bubble {
+        background: #112030;
+        border-color: rgba(37,211,102,.3);
+        box-shadow: 0 8px 32px rgba(0,0,0,.4);
+    }
+    .fab-bubble:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 12px 36px rgba(37,211,102,.2); }
+
+    /* small WhatsApp dot inside bubble */
+    .fab-bubble-icon {
+        width: 28px; height: 28px;
+        background: #25D366;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: .9rem; color: #fff;
+        flex-shrink: 0;
+    }
+    .fab-bubble-text { line-height: 1.3; }
+    .fab-bubble-text strong {
+        display: block;
+        font-family: 'DM Sans', sans-serif;
+        font-size: .78rem; font-weight: 600;
+        color: #111;
+    }
+    [data-theme="dark"] .fab-bubble-text strong { color: #e8ecf1; }
+    .fab-bubble-text span {
+        font-family: 'DM Sans', sans-serif;
+        font-size: .7rem; color: #6b7280;
+    }
+    [data-theme="dark"] .fab-bubble-text span { color: #8fa3b8; }
+
+    /* dismiss × */
+    .fab-bubble-close {
+        position: absolute;
+        top: -7px; right: -7px;
+        width: 20px; height: 20px;
+        background: #e5e7eb;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        font-size: .6rem; color: #555;
+        cursor: pointer;
+        border: 2px solid #fff;
+        line-height: 1;
+        transition: background .2s;
+    }
+    [data-theme="dark"] .fab-bubble-close { background: #1e3248; color: #8fa3b8; border-color: #112030; }
+    .fab-bubble-close:hover { background: #d1d5db; }
+    .fab-bubble.hidden { display: none; }
+
+    /* ── Button column (WhatsApp + Call) — side tabs ── */
+    .fab-btns {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: .45rem;
+        /* entrance: pops in after 0.4s */
+        animation: fabBtnsEntrance 0.5s cubic-bezier(.34,1.56,.64,1) 0.4s both;
+    }
+
+    /* shared button base */
+    .fab-btn {
+        border-radius: 10px 0 0 10px;  /* flat on right, rounded on left — tab style */
+        display: flex; align-items: center; gap: .5rem;
+        text-decoration: none;
+        font-family: 'DM Sans', sans-serif;
+        font-weight: 600;
+        font-size: .82rem;
+        border: none; cursor: pointer;
+        transition: transform .25s ease, box-shadow .25s ease, padding .25s ease;
+        position: relative;
+        white-space: nowrap;
+        /* slightly peeking, slides out on hover */
+        transform: translateX(6px);
+    }
+    .fab-btn:hover { transform: translateX(0); }
+
+    /* WhatsApp tab */
+    .fab-btn-wa {
+        background: #25D366;
+        color: #fff;
+        padding: .78rem 1.2rem .78rem 1rem;
+        box-shadow: -4px 6px 22px rgba(37,211,102,.4);
+    }
+    .fab-btn-wa i { font-size: 1.2rem; }
+    .fab-btn-wa:hover { box-shadow: -6px 8px 28px rgba(37,211,102,.55); }
+
+    /* Call tab */
+    .fab-btn-call {
+        background: var(--navy);
+        color: var(--gold);
+        padding: .78rem 1.2rem .78rem 1rem;
+        border: 2px solid rgba(201,169,97,.25);
+        border-right: none;
+        box-shadow: -4px 6px 20px rgba(11,28,46,.3);
+        font-size: .82rem;
+    }
+    .fab-btn-call i { font-size: 1.1rem; }
+    .fab-btn-call:hover { box-shadow: -6px 8px 26px rgba(201,169,97,.25); background: var(--navy-light); }
+    [data-theme="dark"] .fab-btn-call { background: #112030; }
+
+    /* ── Attention: wiggle + glow on WhatsApp button after 3s ── */
+    .fab-btn-wa {
+        animation: waAttention 1s cubic-bezier(.36,.07,.19,.97) 3s 3;
+    }
+    @keyframes waAttention {
+        0%,100% { transform: translateX(6px);                      box-shadow: -4px 6px 22px rgba(37,211,102,.4); }
+        15%      { transform: translateX(-3px) rotate(-6deg) scale(1.06); box-shadow: -6px 10px 30px rgba(37,211,102,.65); }
+        30%      { transform: translateX(-3px) rotate( 6deg) scale(1.06); box-shadow: -6px 10px 30px rgba(37,211,102,.65); }
+        45%      { transform: translateX(-1px) rotate(-3deg) scale(1.03); }
+        60%      { transform: translateX(-1px) rotate( 3deg) scale(1.03); }
+        75%      { transform: translateX(2px)  rotate(-1deg) scale(1.01); }
+    }
+
+    /* ── Call button: soft left-side ring ── */
+    .fab-btn-call::before {
+        content: '';
+        position: absolute; inset: -5px;
+        border-radius: 10px 0 0 10px;
+        border: 2px solid rgba(201,169,97,.4);
+        border-right: none;
+        animation: callRing 2.4s ease-out 4s infinite;
+    }
+    @keyframes callRing {
+        0%   { transform: scale(1);    opacity: .7; }
+        80%  { transform: scale(1.18); opacity: 0;  }
+        100% { transform: scale(1.18); opacity: 0;  }
+    }
+
+    /* ── Entrances ── */
+    @keyframes bubbleEntrance {
+        from { opacity: 0; transform: translateX(24px) scale(.9); }
+        to   { opacity: 1; transform: translateX(0)    scale(1);  }
+    }
+    @keyframes fabBtnsEntrance {
+        from { opacity: 0; transform: translateX(40px); }
+        to   { opacity: 1; transform: translateX(0);    }
+    }
+
+    /* ── Responsive ── */
+    @media(max-width:768px){
+        .fab-wrap { gap: .4rem; }
+        .fab-btn-wa span,
+        .fab-btn-call span { display: none; }
+        .fab-btn-wa  { padding: .72rem .95rem; }
+        .fab-btn-call{ padding: .72rem .95rem; }
+        .fab-bubble  { margin-right: 52px; }
+    }
+    @media(max-width:640px){
+        .fab-btn-wa  { padding: .65rem .85rem; }
+        .fab-btn-call{ padding: .65rem .85rem; }
+    }
     </style>
 </head>
 <body>
@@ -825,6 +1011,36 @@
     </div>
 </footer>
 
+<!-- ── FLOATING WHATSAPP + CALL BUTTONS ─────────────── -->
+<div class="fab-wrap" id="fabWrap">
+
+    <!-- Attention popup bubble (slides in after 1.8s) -->
+    <div class="fab-bubble" id="fabBubble" onclick="document.getElementById('fabBubble').classList.add('hidden')">
+        <span class="fab-bubble-close" id="fabBubbleClose" title="Dismiss">&#x2715;</span>
+        <div class="fab-bubble-icon"><i class="fab fa-whatsapp"></i></div>
+        <div class="fab-bubble-text">
+            <strong>Chat with us!</strong>
+            <span>We reply instantly 💬</span>
+        </div>
+    </div>
+
+    <!-- Button row -->
+    <div class="fab-btns">
+        <!-- Call button -->
+        <a href="tel:+94763852637" class="fab-btn fab-btn-call" aria-label="Call us">
+            <i class="fas fa-phone"></i>
+            <span>Call Us</span>
+        </a>
+        <!-- WhatsApp pill -->
+        <a href="https://wa.me/94763852637" target="_blank" rel="noopener noreferrer"
+           class="fab-btn fab-btn-wa" aria-label="Chat on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span>WhatsApp</span>
+        </a>
+    </div>
+
+</div>
+
 <div class="scroll-top" id="scrollTop" role="button" aria-label="Scroll to top">
     <i class="fas fa-arrow-up"></i>
 </div>
@@ -917,6 +1133,18 @@
         });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.fade-up').forEach(el => revealObs.observe(el));
+
+    /* ── FLOATING BUTTONS — dismiss bubble ──────── */
+    const fabBubbleClose = document.getElementById('fabBubbleClose');
+    const fabBubble      = document.getElementById('fabBubble');
+    if (fabBubbleClose) {
+        fabBubbleClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            fabBubble.classList.add('hidden');
+        });
+    }
+    // Auto-hide bubble after 8 seconds
+    setTimeout(() => { if (fabBubble) fabBubble.classList.add('hidden'); }, 8000);
 
     /* ── CONTACT FORM ─────────────────────────────── */
     const form        = document.getElementById('contactForm');
